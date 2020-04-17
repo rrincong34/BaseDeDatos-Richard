@@ -10,7 +10,7 @@ CREATE TABLE producto (
 	imgProducto	VARCHAR(255),	
 	descripcion	VARCHAR(255),
 	idSubcategoria	INT NOT NULL,
-	idEstado	INT NOT NULL,
+	idEstado	INT NOT NULL
 );
 
 
@@ -24,7 +24,7 @@ CREATE TABLE categoria (
 CREATE TABLE subcategoria(
 	idSubcategoria		INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nombreSubcategoria	VARCHAR(255),
-	idCategoria		INT NOT NULL,
+	idCategoria		INT NOT NULL
 );
 
 
@@ -43,14 +43,14 @@ CREATE TABLE usuario (
 CREATE TABLE rol (
 	idRol	INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nombreRol		VARCHAR (255),
-	idEstado	    INT NOT NULL,
+	idEstado	    INT NOT NULL
 
 );
 
 CREATE TABLE estado (
 
     idEstado INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombreEstado	VARCHAR(255),
+    nombreEstado	VARCHAR(255)
 
 );
 
@@ -71,14 +71,14 @@ INSERT INTO estado (nombreEstado) VALUES ('activo/En stock'), ('inactivo/En stoc
 
 ALTER TABLE subcategoria ADD CONSTRAINT fk_categoria FOREIGN KEY (idCategoria) REFERENCES categoria (idCategoria) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE usuario ADD CONSTRAINT fk_rol FOREIGN KEY (idRol) REFERENCES rol (idRol)  ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE usuario ADD CONSTRAINT fk_rolUsuario FOREIGN KEY (idRol) REFERENCES rol (idRol)  ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE usuario ADD CONSTRAINT fk_estadouser FOREIGN KEY (idEstado) REFERENCES estado (idEstado)  ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE usuario ADD CONSTRAINT fk_estadoUsuario FOREIGN KEY (idEstado) REFERENCES estado (idEstado)  ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE rol ADD CONSTRAINT fk_estadorol FOREIGN KEY (idEstado) REFERENCES estado (idEstado) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE rol ADD CONSTRAINT fk_estadoRol FOREIGN KEY (idEstado) REFERENCES estado (idEstado) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE producto ADD CONSTRAINT fk_subcategoria FOREIGN KEY (idSubcategoria) REFERENCES subcategoria(idSubcategoria) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE producto ADD CONSTRAINT fk_subCategoria FOREIGN KEY (idSubcategoria) REFERENCES subcategoria(idSubcategoria) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE producto ADD CONSTRAINT fk_estadoprod FOREIGN KEY (idEstado) REFERENCES estado (idEstado) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE producto ADD CONSTRAINT fk_estadoProduc FOREIGN KEY (idEstado) REFERENCES estado (idEstado) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
